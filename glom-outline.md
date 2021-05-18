@@ -6,7 +6,7 @@
   - This was the initial motivation for capsule networks. Capnets allocate a group of neurons (capsule) to representing a level of the hierarchy at a region of an image.
   - In capnets, a parse tree can be created by activating a subset of these capsules and their connections
   - **Q**: Should we look into how exactly capnets create this parse tree?
-  - **Q**: Is their a fundamental problem with this idea of dynamically allocating groups of neurons? Is this something that has been attempted in any other models?
+  - **Q**: Is there a fundamental problem with this idea of dynamically allocating groups of neurons? Is this something that has been attempted in any other models?
 - GLOM also uses capsules to represent part-whole hierarchies, but in a different way.
 - GLOM operates as a sequential processing pipeline, so in vision, a single image would be treated as a sequence of frames.
 
@@ -20,7 +20,8 @@
   - Shows the interaction within a single column.
   - Blue and red arrows represent bottom-up and top-down interactions. 
   - Green arrows can be "scaled residual connections that implement temporal smoothing of the embedding at each level"
-  - **Q** Why do top-down interactions skip a frame?
+  - **Q**: Why do top-down interactions skip a frame?
+  - **Q**: What are scaled residual connections and temporal smoothing?
 - There are also interactions between embeddings at the same level in different columns, which make use of self-attention.
   - These are similar to the attention-weighted interactions between columns that represent word fragments in a multi-headed transformer.
   - Role is "to produce islands identical embeddings at a level by making each embedding vector at that level regress toward similar vectors at nearby locations."
@@ -30,10 +31,10 @@
   2. Output of top-down net acting on embedding at L+1 at the previous time
   3. The embedding vector at the previous time.
   4. The attention-weighted average of the embeddings at the same levels in nearby columns at the previous time.
-  - **Q**: This seems to mostly make sense.
+  - **N**: This seems to mostly make sense.
 - The "islands of similarity" allow GLOM to avoid the need to allocate groups of neurons to represent a node in the tree or set aside neurons for all nodes in advance.
 - GLOM allocates an activity vector to represent a node and uses the same vector at all locations belonging to the node.
-- The bottom-up and top-down nets allow a node to access its ancestors and descendents rather than through pointers.
+- The bottom-up and top-down nets allow a node to access its ancestors and descendents rather than through pointers to dedicated nodes.
 
 ![Figure 2](figure2.png)
 - A picture of the embeddings at a particular time in six nearby columns.
