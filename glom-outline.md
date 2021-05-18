@@ -1,4 +1,4 @@
-# GLOM Understanding Outline
+# GLOM Outline
 
 ## 1. Overview of the idea
 - Representing part-whole hierarchies is fundamental to understanding images (and language, etc.)
